@@ -1,0 +1,370 @@
+/* ========================================
+   LESSON 1: CSS RESET & BASIC SETUP
+   ======================================== */
+
+/* The * selector means "select EVERYTHING" */
+* {
+    margin: 0;      /* Remove default spacing outside elements */
+    padding: 0;     /* Remove default spacing inside elements */
+    box-sizing: border-box;  /* Makes width/height calculations easier */
+}
+
+/* Style the body (the whole page) */
+body {
+    /* Modern system font stack - uses the best font available on each device */
+    font-family:  'Segoe UI';
+    line-height: 1.6;  /* Space between lines of text */
+    color: #1f2937;    /* Darker gray text color (more professional) */
+    background-color: #ffffff;  /* White background */
+}
+
+/* A reusable container to center content and add padding */
+.container {
+    max-width: 1280px;  /* Don't get wider than 1280px */
+    margin: 0 auto;     /* Center it horizontally */
+    padding: 0 20px;    /* Add 20px space on left and right */
+}
+
+
+/* ========================================
+   LESSON 2: THE HERO SECTION
+   ======================================== */
+
+/* The .hero class - our big welcome section */
+.hero {
+    height: 100vh;  /* vh = viewport height, 100vh = full screen height */
+    background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;      /* Make image cover the whole area */
+    background-position: center; /* Center the image */
+    
+    /* Flexbox - a modern way to center things */
+    display: flex;           /* Turn on flexbox */
+    align-items: center;     /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    
+    position: relative;  /* Needed for layering effects */
+}
+
+/* Add a dark overlay so text is readable */
+.hero::before {
+    content: '';  /* Creates an invisible element */
+    position: absolute;  /* Position it over the hero */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);  /* Black with 40% opacity */
+}
+
+/* The text content inside hero */
+.hero-content {
+    position: relative;  /* Stay above the dark overlay */
+    z-index: 10;         /* z-index controls layering (higher = on top) */
+    text-align: center;  /* Center the text */
+    color: white;        /* White text */
+    padding: 0 20px;     /* Add space on sides for mobile */
+}
+
+/* Style the h1 (main title) */
+.hero-content h1 {
+    /* clamp() = responsive font size (min, preferred, max) */
+    font-size: clamp(3rem, 8vw, 6rem);  /* Scales between 3rem and 6rem based on screen width */
+    font-weight: 200;    /* Light font weight */
+    letter-spacing: 0.2em;  /* Space between letters */
+    margin-bottom: 2rem; /* Space below the title */
+}
+
+/* The decorative line under the title */
+.divider {
+    width: 6rem;              /* 6rem = 96 pixels (slightly wider) */
+    height: 1px;              /* 1 pixel tall (a thin line) */
+    background-color: rgba(251, 191, 36, 0.8);  /* Gold color with slight transparency */
+    margin: 0 auto 2rem auto;   /* Center it with auto margins */
+}
+
+/* The subtitle text */
+.hero-subtitle {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);  /* Responsive subtitle size */
+    font-weight: 300;       /* Light weight */
+    letter-spacing: 0.1em;  /* Slight letter spacing */
+    max-width: 600px;       /* Don't get wider than 600px */
+    margin: 0 auto;         /* Center it */
+    color: rgba(255, 255, 255, 0.9);  /* Slightly transparent white */
+}
+
+
+/* ========================================
+   LESSON 3: ABOUT SECTION (Two Columns)
+   ======================================== */
+
+/* The about section - give it space and a light background */
+.about-section {
+    padding: 100px 0;  /* 100px space top and bottom, 0 on sides */
+    background-color: #f9fafb;  /* Very light gray background */
+}
+
+/* The grid - splits content into 2 columns */
+.about-grid {
+    display: grid;  /* Turn on CSS Grid */
+    grid-template-columns: 1fr 1fr;  /* 2 columns of equal width (1fr = 1 fraction) */
+    gap: 60px;  /* 60px space between columns */
+    align-items: center;  /* Align items vertically in the middle */
+}
+
+/* Style the text side */
+.about-text h2 {
+    font-size: clamp(1.875rem, 4vw, 2.5rem);  /* Responsive heading */
+    font-weight: 200;       /* Light weight (extralight) */
+    letter-spacing: 0.15em; /* Space between letters */
+    margin-bottom: 1rem;    /* Space below heading */
+}
+
+/* Make the divider align left instead of center */
+.about-text .divider {
+    margin-left: 0;  /* Remove auto centering */
+    margin-bottom: 2rem;
+}
+
+/* Style paragraphs in the about section */
+.about-text p {
+    font-size: 1.125rem;  /* Slightly bigger than normal */
+    line-height: 1.8;     /* More space between lines */
+    margin-bottom: 1.5rem;  /* Space below each paragraph */
+    color: #4b5563;       /* Medium gray */
+}
+
+/* Stats container - holds all 3 stat items */
+.stats {
+    display: flex;     /* Arrange items in a row */
+    gap: 50px;         /* 50px space between each stat */
+    margin-top: 2rem;  /* Space above stats */
+}
+
+/* The big number in each stat */
+.stat-number {
+    font-size: 2.25rem;    /* Big number (slightly smaller for better proportion) */
+    font-weight: 200;      /* Extralight weight */
+    color: #f59e0b;        /* Gold color */
+    margin-bottom: 0.5rem; /* Space below number */
+}
+
+/* The label under each stat number */
+.stat-label {
+    font-size: 0.875rem;  /* Smaller text */
+    color: #6b7280;       /* Gray color */
+    letter-spacing: 0.05em;
+}
+
+/* Style the image side */
+.about-image img {
+    width: 100%;           /* Image fills its container */
+    height: auto;          /* Height adjusts automatically to maintain ratio */
+    border-radius: 8px;    /* Rounded corners */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+}
+
+
+/* ========================================
+   LESSON 4: GALLERY SECTION
+   ======================================== */
+
+/* The gallery section - white background with padding */
+.gallery-section {
+    padding: 100px 0;       /* 100px space top and bottom */
+    background-color: white; /* White background */
+}
+
+/* Section title - centered heading */
+.section-title {
+    font-size: clamp(1.875rem, 4vw, 2.25rem); /* Responsive heading size */
+    font-weight: 200;        /* Extralight weight */
+    text-align: center;      /* Center the text */
+    letter-spacing: 0.15em;  /* Space between letters */
+    margin-bottom: 0.75rem;  /* Small space below */
+}
+
+/* Title divider - centered gold line */
+.title-divider {
+    width: 4rem;                            /* 64px wide */
+    height: 1px;                            /* 1px tall (thin line) */
+    background-color: #fbbf24;              /* Gold color */
+    margin: 0 auto 4rem auto;               /* Center it + 64px space below */
+}
+
+/* Gallery Grid - creates responsive columns */
+.gallery-grid {
+    display: grid;  /* Turn on CSS Grid */
+    
+    /* Create columns that auto-fit and are at least 300px wide */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    gap: 1.5rem;    /* 24px space between grid items */
+}
+
+/* Each gallery item - contains image and overlay */
+.gallery-item {
+    position: relative;    /* Creates positioning context for overlay */
+    height: 20rem;         /* 320px tall */
+    border-radius: 0.5rem; /* 8px rounded corners */
+    overflow: hidden;      /* Hide anything outside the box (important for zoom effect!) */
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.07);  /* Subtle shadow */
+    cursor: pointer;       /* Show hand cursor on hover */
+}
+
+/* The image inside each gallery item */
+.gallery-item img {
+    width: 100%;         /* Fill container width */
+    height: 100%;        /* Fill container height */
+    object-fit: cover;   /* Cover area without distortion (like background-size: cover) */
+    
+    /* Smooth zoom animation */
+    transition: transform 0.7s ease;  /* Takes 0.7 seconds to zoom */
+}
+
+/* When you hover over gallery item, zoom the image */
+.gallery-item:hover img {
+    transform: scale(1.1);  /* Make image 110% size (zoom in 10%) */
+}
+
+/* The dark overlay that appears on hover */
+.gallery-overlay {
+    position: absolute;  /* Position over the image */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;           /* Cover entire gallery item */
+    
+    /* Gradient from dark bottom to transparent top */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2), transparent);
+    
+    opacity: 0;          /* Invisible by default */
+    transition: opacity 0.5s ease;  /* Smooth fade in/out */
+}
+
+/* When hovering, make overlay visible */
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;  /* Fully visible */
+}
+
+/* The text inside the overlay */
+.gallery-text {
+    position: absolute;  /* Position at bottom of overlay */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;     /* 24px padding inside */
+    color: white;        /* White text */
+    
+    /* Slide up animation */
+    transform: translateY(8px);  /* Start 8px lower */
+    transition: transform 0.5s ease;
+}
+
+/* When hovering, slide text up to original position */
+.gallery-item:hover .gallery-text {
+    transform: translateY(0);  /* Move to normal position */
+}
+
+/* Gallery item heading */
+.gallery-text h3 {
+    font-size: 1.25rem;      /* 20px */
+    font-weight: 300;        /* Light weight */
+    letter-spacing: 0.05em;  /* Slight letter spacing */
+    margin-bottom: 0.25rem;  /* Small space below */
+}
+
+/* Gallery item description */
+.gallery-text p {
+    font-size: 0.875rem;           /* 14px - smaller text */
+    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    letter-spacing: 0.05em;
+}
+
+
+/* ========================================
+   LESSON 5: TESTIMONIALS SECTION
+   ======================================== */
+
+/* Testimonials section - white background */
+.testimonials-section {
+    padding: 100px 0;        /* 100px top and bottom spacing */
+    background-color: white; /* White background */
+}
+
+/* Testimonials grid - responsive card layout */
+.testimonials-grid {
+    display: grid;  /* Turn on CSS Grid */
+    
+    /* Create columns that auto-fit and are at least 280px wide */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    
+    gap: 2.5rem;  /* 40px space between cards */
+}
+
+/* Each testimonial card */
+.testimonial-card {
+    background-color: rgba(249, 250, 251, 0.7); /* Very light gray background */
+    padding: 2rem;           /* 32px padding inside card */
+    border-radius: 0.5rem;   /* 8px rounded corners */
+    
+    /* Subtle shadow that gets bigger on hover */
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.5s ease;  /* Smooth shadow transition */
+}
+
+/* Make shadow bigger when hovering over card */
+.testimonial-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+/* Star rating container */
+.stars {
+    display: flex;           /* Line up stars in a row */
+    gap: 0.25rem;           /* 4px space between stars */
+    color: #fbbf24;         /* Gold color for stars */
+    margin-bottom: 1.25rem; /* 20px space below stars */
+    font-size: 1.125rem;    /* 18px - slightly bigger stars */
+}
+
+/* The review text */
+.testimonial-text {
+    color: #374151;         /* Dark gray text */
+    margin-bottom: 1.75rem; /* 28px space below text */
+    font-style: italic;     /* Make text italic (slanted) */
+    font-weight: 300;       /* Light weight */
+    line-height: 1.8;       /* More space between lines */
+    letter-spacing: 0.025em;
+}
+
+/* Author info container - image + text side by side */
+.testimonial-author {
+    display: flex;      /* Line up image and text horizontally */
+    align-items: center; /* Center vertically */
+    gap: 1rem;          /* 16px space between image and text */
+}
+
+/* Author profile image */
+.testimonial-author img {
+    width: 3rem;         /* 48px wide */
+    height: 3rem;        /* 48px tall (creates perfect circle with border-radius) */
+    border-radius: 50%;  /* Makes image circular (50% = perfect circle) */
+    object-fit: cover;   /* Cover area without distortion */
+    
+    /* Add a subtle gold ring around image */
+    border: 2px solid rgba(251, 191, 36, 0.2);
+}
+
+/* Author name */
+.author-name {
+    font-weight: 400;       /* Normal weight */
+    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem; /* Small space below name */
+}
+
+/* Author location */
+.author-location {
+    font-size: 0.875rem;  /* 14px - smaller text */
+    color: #6b7280;       /* Medium gray */
+    letter-spacing: 0.025em;
+}
+
